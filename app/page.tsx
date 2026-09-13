@@ -1,4 +1,3 @@
-// app/page.tsx
 import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
@@ -6,7 +5,7 @@ import { Truck, ShieldCheck, RotateCcw, Headphones } from "lucide-react";
 import { formatBDT } from "@/lib/utils";
 import NewsletterForm from "@/components/newsletter-form";
 
-export const revalidate = 60; // ISR: refresh every 60s
+export const revalidate = 60;
 
 async function getHomeData() {
   const [categories, featuredProducts] = await Promise.all([
