@@ -37,8 +37,6 @@ export default function RegisterPage() {
     try {
       const result = await registerUser({ ...form, captchaToken, captchaAnswer });
 
-      // Auto login right after registration, using the server-issued
-      // pre-solved captcha so the person doesn't have to solve a second one.
       const res = await signIn("credentials", {
         email: form.email,
         password: form.password,
