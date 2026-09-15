@@ -44,11 +44,12 @@ export default async function HomePage() {
           </div>
           <div className="relative h-64 md:h-80">
             <Image
-              src="/hero-banner.jpg"
+              src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=1200"
               alt="Hero banner"
               fill
               className="object-cover rounded-lg"
               priority
+              unoptimized
             />
           </div>
         </div>
