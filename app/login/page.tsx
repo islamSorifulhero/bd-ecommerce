@@ -3,13 +3,13 @@
 import { useState, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import CaptchaField, { CaptchaFieldHandle } from "@/components/captcha-field";
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,7 +44,17 @@ function LoginForm() {
       return;
     }
 
-    router.push(callbackUrl);
+    // সেশন রিফ্রেশ করে ইউজার রোল অনুযায়ী রিডাইরেক্ট
+    if (callbackUrl) {
+      router.push(callbackUrl);
+    } else {
+      // যদি Admin ইমেইল হয় তবে ড্যাশবোর্ডে পাঠাবে, নাহলে হোমপেজে
+      if (email.toLowerCase().includes("admin")) {
+        router.push("/admin");
+      } else {
+        router.push("/");
+      }
+    }
     router.refresh();
   };
 
@@ -60,6 +70,7 @@ function LoginForm() {
             className="w-full border rounded-lg p-3"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
 
@@ -70,6 +81,7 @@ function LoginForm() {
             className="w-full border rounded-lg p-3"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className="text-right mt-1">
             <Link href="/forgot-password" className="text-xs text-green-700">
