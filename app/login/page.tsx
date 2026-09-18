@@ -50,7 +50,7 @@ function LoginForm() {
     } else {
       // যদি Admin ইমেইল হয় তবে ড্যাশবোর্ডে পাঠাবে, নাহলে হোমপেজে
       if (email.toLowerCase().includes("admin")) {
-        router.push("/admin");
+        router.push("/admin/products");
       } else {
         router.push("/");
       }
