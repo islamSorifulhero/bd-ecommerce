@@ -48,9 +48,6 @@ export async function registerUser(input: RegisterInput) {
     },
   });
 
-  // Hand the client a freshly solved captcha so it can immediately complete
-  // one signIn() call for auto-login, without asking the person to solve
-  // another puzzle right after they just solved one to register.
   const autoLogin = buildSolvedCaptcha();
 
   return { id: user.id, email: user.email, autoLogin };

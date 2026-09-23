@@ -44,11 +44,9 @@ function LoginForm() {
       return;
     }
 
-    // সেশন রিফ্রেশ করে ইউজার রোল অনুযায়ী রিডাইরেক্ট
     if (callbackUrl) {
       router.push(callbackUrl);
     } else {
-      // যদি Admin ইমেইল হয় তবে ড্যাশবোর্ডে পাঠাবে, নাহলে হোমপেজে
       if (email.toLowerCase().includes("admin")) {
         router.push("/admin/products");
       } else {
