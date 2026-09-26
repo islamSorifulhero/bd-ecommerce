@@ -1,4 +1,3 @@
-// auth.ts  (NextAuth v5 / Auth.js)
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
@@ -22,8 +21,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        // Bot deterrent: a valid math-captcha answer is required on every
-        // login attempt, on top of the IP rate limit in middleware.ts.
         if (
           !credentials.captchaToken ||
           !credentials.captchaAnswer ||
@@ -58,7 +55,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        // @ts-expect-error - custom field
         token.role = user.role;
       }
       return token;
