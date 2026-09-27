@@ -1,5 +1,3 @@
-// components/whatsapp-button.tsx
-// Renders nothing if NEXT_PUBLIC_WHATSAPP_NUMBER isn't configured.
 import { MessageCircle } from "lucide-react";
 
 export default function WhatsAppButton() {

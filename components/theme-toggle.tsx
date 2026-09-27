@@ -8,7 +8,6 @@ export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Avoid rendering theme-dependent UI before hydration to prevent mismatch
   useEffect(() => setMounted(true), []);
   if (!mounted) return <div className="w-6 h-6" />;
 
