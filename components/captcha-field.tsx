@@ -33,7 +33,6 @@ const CaptchaField = forwardRef<CaptchaFieldHandle, Props>(function CaptchaField
 
   useEffect(() => {
     fetchChallenge();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useImperativeHandle(ref, () => ({ refresh: fetchChallenge }));
